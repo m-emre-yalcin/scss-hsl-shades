@@ -1,0 +1,68 @@
+// Define colors as HSL see: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl()
+$lightColors: (
+  primary: (
+    h: 250,
+    s: 100%,
+    l: 100%,
+  ),
+  secondary: (
+    h: 240,
+    s: 20%,
+    l: 79%,
+  ),
+  blue: (
+    h: 214,
+    s: 90%,
+    l: 64%,
+  ),
+);
+
+$darkColors: (
+  primary: (
+    h: 240,
+    s: 21%,
+    l: 6%,
+  ),
+  secondary: (
+    h: 240,
+    s: 21%,
+    l: 6%,
+  ),
+  blue: (
+    h: 214,
+    s: 90%,
+    l: 64%,
+  ),
+);
+
+
+// Create shades and use them in css variables
+@function create-color-shade($arguments, $addS: 0%, $addL: 0%) {
+  $hue: map-get($arguments, h);
+  $saturation: map-get($arguments, s) + $addS;
+  $lightness: map-get($arguments, l) + $addL;
+
+  $color: hsl($hue, $saturation, $lightness);
+  @return $color;
+}
+@mixin create-color-variables($hslColors) {
+  $saturation: 50%;
+  $lightness: 50%;
+
+  @each $name, $hslColor in $hslColors {
+    #{'--' + $name}: create-color-shade($hslColor);
+    #{'--' + $name + '-dark'}: create-color-shade($hslColor, 0%, -5%);
+    #{'--' + $name + '-darkest'}: create-color-shade($hslColor, 0%, -10%);
+    #{'--' + $name + '-light'}: create-color-shade($hslColor, 0%, 5%);
+    #{'--' + $name + '-lighter'}: create-color-shade($hslColor, 0%, 10%);
+  }
+}
+
+// Define themes:
+:root,
+:root[light] {
+  @include create-color-variables($lightColors);
+}
+:root[dark] {
+  @include create-color-variables($lightColors);
+}
