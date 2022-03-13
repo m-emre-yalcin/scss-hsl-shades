@@ -52,7 +52,7 @@ $darkColors: (
   @each $name, $hslColor in $hslColors {
     #{'--' + $name}: create-color-shade($hslColor);
     #{'--' + $name + '-dark'}: create-color-shade($hslColor, 0%, -5%);
-    #{'--' + $name + '-darkest'}: create-color-shade($hslColor, 0%, -10%);
+    #{'--' + $name + '-darker'}: create-color-shade($hslColor, 0%, -10%);
     #{'--' + $name + '-light'}: create-color-shade($hslColor, 0%, 5%);
     #{'--' + $name + '-lighter'}: create-color-shade($hslColor, 0%, 10%);
   }
