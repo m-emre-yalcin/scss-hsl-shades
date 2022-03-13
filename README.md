@@ -2,7 +2,7 @@
 Automatically generates color shades using scss
 
 ## Define colors as HSL
-see HSL: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl()
+See HSL: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl()
 
 Define your colors in a list like below:
 ```scss
@@ -25,7 +25,7 @@ $lightColors: (
 );
 ```
 
-Use the create-color-variables function.
+Use the `create-color-variables` function.
 
 ```scss
 :root,
@@ -43,3 +43,5 @@ for instance; above `primary` scss variable will become:
 - var(--primary-lighter)
 - var(--primary-dark)
 - var(--primary-darker)
+
+variables. All shades are relative to the main color.
